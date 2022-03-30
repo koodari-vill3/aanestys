@@ -5,7 +5,7 @@
 
 <form>
     <fieldset>
-      <legend>Register</legend>
+      <legend>Login</legend>
       <div class="form-group">
         <label for="username">Username</label>
         <input name="username" type="text" class="form-control" placeholder="user name">
@@ -14,11 +14,8 @@
         <label for="password">Password</label>
         <input name="password" type="password" class="form-control" placeholder="password">
       </div>
-      <div class="form-group">
-        <label for="password">Confirm Password</label>
-        <input name="confirmpassword" type="password" class="form-control" placeholder="password again">
-      </div>
-      <button type="submit" class="btn btn-primary">Register</button>  
+
+      <button type="submit" class="btn btn-primary">Login</button>  
     </fieldset>
   </form>
 
