@@ -3,7 +3,7 @@
 
 <div class="container">
 
-<form>
+<form name="register">
     <fieldset>
       <legend>Register</legend>
       <div class="form-group">
@@ -24,4 +24,6 @@
 
 </div>
 
-  <?php include_once 'layout/bottom.inc.php'; ?>
+<script src="js/register.js"></script>
+
+<?php include_once 'layout/bottom.inc.php'; ?>
