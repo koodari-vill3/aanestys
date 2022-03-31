@@ -6,14 +6,17 @@ if (!isset($_POST['username']) || !isset($_POST['password'])){
 }
 
 $username = $_POST['username'];
-$password = $_POST['password'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 include_once 'pdo-connect.php';
 
 // Luodaan pdo-statement
-$stmt = $conn ->prepare("INSERT INTO user (username, pwd) VALUES (:username, :pwd);");
+$stmt = $conn->prepare("INSERT INTO user (username, pwd) VALUES (:username, :pwd);");
 $stmt->bindParam(':username', $username);
 $stmt->bindParam(':pwd', $password);
-$stmt_<execute();
+if($stmt->execute() == false){
+    echo 'tallennus epäonnistui';
+} else {
+    echo 'tallennettu';
+}
 
-echo 'tallennettu';
