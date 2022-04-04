@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `votedb`.`poll` (
   `end` DATETIME NULL,
   `user_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_poll_user_idx` (`user_id` ASC) VISIBLE,
+  INDEX `fk_poll_user_idx` (`user_id` ASC) ,
   CONSTRAINT `fk_poll_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `votedb`.`user` (`id`)
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `votedb`.`option` (
   `votes` INT NOT NULL,
   `poll_id` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_option_poll1_idx` (`poll_id` ASC) VISIBLE,
+  INDEX `fk_option_poll1_idx` (`poll_id` ASC) ,
   CONSTRAINT `fk_option_poll1`
     FOREIGN KEY (`poll_id`)
     REFERENCES `votedb`.`poll` (`id`)
