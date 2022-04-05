@@ -1,4 +1,4 @@
-
+// register sivun toiminnallisuus
 
 document.forms['register'].addEventListener('submit',registerNewUser);
 
