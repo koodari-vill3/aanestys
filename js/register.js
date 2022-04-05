@@ -27,7 +27,13 @@ function registerNewUser(event){
 
     let ajax = new XMLHttpRequest();
     ajax.onload = function(){
-        console.log(ajax.responseText);
+        const data = JSON.parse(this.responseText);
+        if (data.hasOwnProperty('success')) {
+           alert('Tallennus onnistui!');
+        } else {
+            alert(data.error)
+        }
+
     }
     ajax.open("POST", "backend/registerNewUser.php", true);
     ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
