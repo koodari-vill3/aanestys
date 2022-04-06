@@ -1,8 +1,24 @@
+<?php session_start(); ?>
 <?php include_once 'layout/top.inc.php'; ?>
 <?php include_once 'layout/nav.inc.php'; ?>
 
 <div class="jumbotron">
   <h1 class="display-3">Welcome to voteapp!</h1>
+  <?php if (isset($_SESSION['logged_in'])): ?>
+      <p>Olet kirjautuneena käyttäjänä <?php echo $_SESSION['username']; ?></p>
+  <?php endif; ?>
 </div>
 
-    <?php include_once 'layout/bottom.inc.php'; ?>
+<div class="container">
+
+    <div id="msg" class="alert alert-dismissible alert-warning d-none">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <h4 class="alert-heading"></h4>
+      <p class="mb-0"></a></p>
+    </div>
+
+</div>
+
+<script src="js/common.js"></script>
+
+<?php include_once 'layout/bottom.inc.php'; ?>

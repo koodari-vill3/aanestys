@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 if (!isset($_POST['username']) || !isset($_POST['password'])){
     $data = array(
         'error' => 'POST-dataa ei saatavilla!'
@@ -22,12 +25,22 @@ try{
         );
     } else {
         // Käyttäjä löytyi
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         
+        if (password_verify($password, $result['pwd'])) {
+            $data = array(
+                'success' => 'Kirjautuminen onnistui!'
+            );
 
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user_id'] = $result['id'];
+            $_SESSION['username'] = $result['username'];
 
-        $data = array(
-            'success' => 'Kysely onnistui'
-        );
+        } else {
+            $data = array(
+                'error' => 'Salasana on väärä!'
+            );
+        }
 
     }
 }catch (PDOException $e) {

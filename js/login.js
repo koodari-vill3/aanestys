@@ -2,16 +2,6 @@
 login.js - login sivun toiminnallisuus
 */
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString)
-
-if (urlParams.has('msg') && urlParams.has('type')) {
-    const msg = urlParams.get('msg');
-    const type = urlParams.get('type');
-
-    showMessage(type, msg);
-}
-
 // Login-button
 document.forms['login'].addEventListener('submit', loginUser );
 
@@ -33,6 +23,7 @@ function loginUser(event){
     let ajax = new XMLHttpRequest();
     ajax.onload = function (){
         const data = JSON.parse(this.responseText);
+        console.log(data);
         if (data.hasOwnProperty('success')){
             window.location.href = "index.php?type=success&msg=Welcome!";
             return;
