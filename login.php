@@ -3,6 +3,12 @@
 
 <div class="container">
 
+  <div id="msg" class="alert alert-dismissible alert-warning d-none">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <h4 class="alert-heading">Warning!</h4>
+    <p class="mb-0"></a></p>
+  </div>
+
 <form>
     <fieldset>
       <legend>Login</legend>
@@ -21,4 +27,7 @@
 
 </div>
 
-  <?php include_once 'layout/bottom.inc.php'; ?>
+<script src="js/common.js"></script>
+<script src="js/login.js"></script>
+
+<?php include_once 'layout/bottom.inc.php'; ?>

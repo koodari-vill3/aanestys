@@ -3,6 +3,12 @@
 
 <div class="container">
 
+  <div id="msg" class="alert alert-dismissible alert-warning d-none">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <h4 class="alert-heading">Warning!</h4>
+    <p class="mb-0"></a></p>
+  </div>
+
 <form name="register">
     <fieldset>
       <legend>Register</legend>
@@ -15,7 +21,7 @@
         <input name="password" type="password" class="form-control" placeholder="password">
       </div>
       <div class="form-group">
-        <label for="password">Confirm Password</label>
+        <label for="password">Confirm password</label>
         <input name="confirmpassword" type="password" class="form-control" placeholder="password again">
       </div>
       <button type="submit" class="btn btn-primary">Register</button>  
@@ -25,5 +31,6 @@
 </div>
 
 <script src="js/register.js"></script>
+<script src="js/common.js"></script>
 
 <?php include_once 'layout/bottom.inc.php'; ?>

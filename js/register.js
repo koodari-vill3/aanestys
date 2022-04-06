@@ -11,17 +11,17 @@ function registerNewUser(event){
     const password2 = document.forms['register']['confirmpassword'].value;
 
     if(username.length <= 0) {
-        alert('Username is required!');
+        showMessage('error','Username is required!');
         return;
     }
 
     if(password.length <= 4) {
-        alert('Password minimum length is 4 characters!');
+        showMessage('error','Password minimum length is 4 characters!');
         return;
     }
 
     if (password.localeCompare(password2) != 0){
-        alert('Password nor matching!!');
+        showMessage('error','Password nor matching!!');
         return;
     }
 
@@ -29,9 +29,9 @@ function registerNewUser(event){
     ajax.onload = function(){
         const data = JSON.parse(this.responseText);
         if (data.hasOwnProperty('success')) {
-           alert('Tallennus onnistui!');
+           window.location.href = "login.php?type=success&msg=Rekisteröityminen onnistui! Voit kirjautua sisään!";
         } else {
-            alert(data.error)
+            showMessage('error', data.error);
         }
 
     }
