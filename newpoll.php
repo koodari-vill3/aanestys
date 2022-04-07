@@ -1,3 +1,10 @@
+<?php session_start(); ?>
+<?php
+if (!isset($_SESSION['logged_in'])){
+  header('Location: index.php');
+  die();
+}
+?>
 <?php include_once 'layout/top.inc.php'; ?>
 <?php include_once 'layout/nav.inc.php'; ?>
 
@@ -25,7 +32,7 @@
         <input name="stop" type="datetime-local" class="form-control"> 
       </div>
     
-    <h4>Poll options</h4>
+    <h4>Poll options</h4> <button class="btn btn-primary" id="addOption">Add option</button>
       <div class="form-group">
         <label for="option1">Option 1</label>
         <input name="option1" type="text" class="form-control" placeholder="Option 1">
@@ -34,11 +41,11 @@
         <label for="option2">Option 2</label>
         <input name="option2" type="text" class="form-control" placeholder="Option 2">
       </div>
-      <button class="btn btn-primary" id="addOption">Add option</button>
     <!-- Addinional options go here -->
 
-      <button type="submit" class="btn btn-primary">Save Poll</button>  
     </fieldset>
+    <button type="submit" class="btn btn-primary">Save Poll</button>  
+    <button class="btn btn-warning" id="deleteLastOption">Delete last option</button>
   </form>
 
 </div>

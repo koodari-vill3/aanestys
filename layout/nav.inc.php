@@ -24,9 +24,12 @@
                   <a class="nav-link" href="login.php">Login</a>
                 </li>
               <?php endif; ?>
+
+              <?php if (isset($_SESSION['logged_in'])):?>
               <li class="nav-item">
                 <a class="nav-link" href="newpoll.php">New poll</a>
               </li>
+              <?php endif; ?>
             </ul>
           </div>
         </div>
