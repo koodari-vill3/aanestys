@@ -16,7 +16,7 @@ if (!isset($_SESSION['logged_in'])){
     <p class="mb-0"></a></p>
   </div>
 
-<form name="register">
+<form name="newPoll">
     <fieldset>
       <legend>Create new poll</legend>
       <div class="form-group">
@@ -28,8 +28,8 @@ if (!isset($_SESSION['logged_in'])){
         <input name="start" type="datetime-local" class="form-control"> 
       </div>
       <div class="form-group">
-        <label for="stop">Stop</label>
-        <input name="stop" type="datetime-local" class="form-control"> 
+        <label for="end">End</label>
+        <input name="end" type="datetime-local" class="form-control"> 
       </div>
     
     <h4>Poll options</h4> <button class="btn btn-primary" id="addOption">Add option</button>
