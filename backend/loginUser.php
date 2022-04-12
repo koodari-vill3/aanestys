@@ -43,7 +43,7 @@ try{
         }
 
     }
-}catch (PDOException $e) {
+} catch (PDOException $e) {
         $data = array(
             'error' => 'Tapahtui joku virhe!'
         );   

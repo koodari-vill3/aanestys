@@ -17,8 +17,15 @@
       <p class="mb-0"></a></p>
     </div>
 
+    <h2>Votes</h2>
+    <ul id="votesUl" class="list-group">
+    </ul>
+
 </div>
 
+
+
+<script src="js/index.js"></script>
 <script src="js/common.js"></script>
 
 <?php include_once 'layout/bottom.inc.php'; ?>
