@@ -18,6 +18,9 @@
     </div>
 
     <h2>Votes</h2>
+    <button class="btn btn-primary" onclick="showPolls('old')">Show old polls</button>
+    <button class="btn btn-primary" onclick="showPolls('future')">Show future polls</button>
+    <button class="btn btn-primary" onclick="showPolls('current')">Show current polls</button>
     <ul id="votesUl" class="list-group">
     </ul>
 
