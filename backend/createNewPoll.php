@@ -74,7 +74,7 @@ try{
 
         if($stmt->execute() == false){
             $data = array(
-                'error' => 'Error!'
+                'error' => 'Tapahtui joku virhe!'
             );
         } else {
             $data = array(

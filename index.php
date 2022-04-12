@@ -5,7 +5,7 @@
 <div class="jumbotron">
   <h1 class="display-3">Welcome to VoteApp</h1>
   <?php if (isset($_SESSION['logged_in'])): ?>
-      <p>Olet kirjautuneena käyttäjänä <?php echo $_SESSION['username']; ?></p>
+      <p>You are logged in as user <?php echo $_SESSION['username']; ?></p>
   <?php endif; ?>
 </div>
 

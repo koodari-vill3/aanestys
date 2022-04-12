@@ -28,7 +28,7 @@ function loginUser(event){
             window.location.href = "index.php?type=success&msg=Welcome!";
             return;
         } else {
-            showMessage('error', 'Kirjautuminen epäonnistui!');
+            showMessage('error', 'Login failed!');
         }
     }
     ajax.open("POST","backend/loginUser.php", true);

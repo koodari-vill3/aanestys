@@ -20,21 +20,21 @@ try{
     $stmt->bindParam(':pwd', $password);
     if($stmt->execute() == false){
         $data = array(
-            'error' => 'Tapahtui joku virhe tallennuksessa!'
+            'error' => 'Failed!'
         );
     } else {
         $data = array(
-            'success' => 'Uusi käyttäjä on tallennettu!'
+            'success' => 'New user saved!'
         );
     }
 }catch (PDOException $e) {
     if (strpos($e->getMessage(),'1062 Duplicate entry')){
         $data = array(
-            'error' => 'Käyttäjä on jo olemassa!'
+            'error' => 'User already exists!'
         );
     } else {
         $data = array(
-            'error' => 'Tapahtui joku virhe tallennuksessa!'
+            'error' => 'Failed!'
         );
     }      
 }

@@ -21,7 +21,7 @@ try{
 
     if($stmt->execute() == false){
         $data = array(
-            'error' => 'Tapahtui joku virhe!'
+            'error' => 'Error!'
         );
     } else {
         // Käyttäjä löytyi
@@ -29,7 +29,7 @@ try{
         
         if (password_verify($password, $result['pwd'])) {
             $data = array(
-                'success' => 'Kirjautuminen onnistui!'
+                'success' => 'Login succeed'
             );
 
             $_SESSION['logged_in'] = true;
@@ -38,14 +38,14 @@ try{
 
         } else {
             $data = array(
-                'error' => 'Salasana on väärä!'
+                'error' => 'Password is wrong!'
             );
         }
 
     }
 } catch (PDOException $e) {
         $data = array(
-            'error' => 'Tapahtui joku virhe!'
+            'error' => 'Error'
         );   
 }
 
