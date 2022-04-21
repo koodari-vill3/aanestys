@@ -1,0 +1,55 @@
+<?php
+// Get all polls from db
+
+if (!isset($_GET['id'])){
+    header('Location: ../index.php');
+}
+
+$pollid = $_GET['id'];
+
+include_once 'pdo-connect.php';
+
+try {
+    $stmt = $conn->prepare("SELECT id, topic, start, end, user_id FROM poll WHERE id = :pollid");
+
+    $stmt->bindParam(':pollid', $pollid);
+
+    if ($stmt->execute() == false){
+        $data = array(
+            'error' => 'Error occured!'
+        );
+    } else {
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $data = $result;
+    }
+} catch (PDOException $e) {
+    $data = array(
+        'error' => 'Error occured!'
+    );   
+}
+
+// Get options from db
+try {
+    $stmt = $conn->prepare("SELECT id, name, votes FROM option WHERE poll_id = :pollid");
+    $stmt->bindParam(':pollid', $pollid);
+
+    if ($stmt->execute() == false){
+        $data = array(
+            'error' => 'Error occured!'
+        );
+    } else {
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $options = $result;
+        $data['options'] = $options;
+    }
+} catch (PDOException $e) {
+    $data = array(
+        'error' => 'Error occured!'
+    );   
+}
+
+
+
+
+header("Content-type: application/json;charset=utf-8");
+echo json_encode($data);

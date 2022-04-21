@@ -8,7 +8,6 @@ if (urlParams.has('msg') && urlParams.has('type')) {
     showMessage(type, msg);
 }
 
-
 function showMessage(type, msg){
 
     let msgBox = document.getElementById("msg");
