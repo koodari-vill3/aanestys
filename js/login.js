@@ -25,7 +25,7 @@ function loginUser(event){
         const data = JSON.parse(this.responseText);
         console.log(data);
         if (data.hasOwnProperty('success')){
-            window.location.href = "index.php?type=success&msg=Welcome!";
+            window.location.href = "admin.php?type=success&msg=Welcome";
             return;
         } else {
             showMessage('error', 'Login failed!');
