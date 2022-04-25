@@ -1,5 +1,11 @@
 <?php
 // Get all polls from db
+if (isset($_GET['user_id'])){
+    $user_id = $_GET['user_id'];
+} else{
+    $user_id = false;
+} 
+
 
 include_once 'pdo-connect.php';
 
