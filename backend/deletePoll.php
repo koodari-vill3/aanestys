@@ -1,17 +1,18 @@
 <?php
-// giveVote.php - save vote for option in db
+// Tarkista onko kirjauduttu
+
 
 if (!isset($_GET['id'])){
     header('Location: ../index.php');
 }
 
-$optionid = $_GET['id'];
+$poll_id = $_GET['id'];
 
 include_once 'pdo-connect.php';
 
 try {
-    $stmt = $conn->prepare("UPDATE option SET votes = votes + 1 WHERE (id = :optionid);");
-    $stmt->bindParam(':optionid', $optionid);
+    $stmt = $conn->prepare("DELETE FROM option WHERE poll_id = :pollid;");
+    $stmt->bindParam(':pollid', $poll_id);
 
     if ($stmt->execute() == false){
         $data = array(
@@ -22,6 +23,20 @@ try {
             'success' => 'Vote succesfull!'
         );
     }
+
+    $stmt = $conn->prepare("DELETE FROM poll WHERE id = :pollid;");
+    $stmt->bindParam(':pollid', $poll_id);
+
+    if ($stmt->execute() == false){
+        $data = array(
+            'error' => 'Error occured!'
+        );
+    } else {
+        $data = array(
+            'success' => 'Vote succesfull!'
+        );
+    }
+
 } catch (PDOException $e) {
     $data = array(
         'error' => 'Error occured!'
