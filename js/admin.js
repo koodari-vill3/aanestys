@@ -113,7 +113,16 @@ function openPoll(event){
 }
 
 function deletePoll(id){
-    
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function (){
+        data = JSON.parse(this.responseText);
+        console.log(data);
+        let liToDelete = document.querySelector(`[data-voteid="${id}"]`)
+        let parent = liToDelete.parentElement;
+        parent.removeChild(liToDelete);
+    }
+    ajax.open("GET", "backend/deletePoll.php?id=" + id);
+    ajax.send();
 }
 
 function editPoll(id){
