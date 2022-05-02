@@ -9,9 +9,11 @@ if (pollParams.has('id')){
 }
 
 let optionCount = 0;
+let toDelete = [];
 
 document.getElementById('addOption').addEventListener('click', addNewOption);
 document.getElementById('deleteLastOption').addEventListener('click', deleteLastOption);
+document.forms['editPoll'].addEventListener('submit', modifyPoll);
 
 
 // Get poll data from db
@@ -45,7 +47,7 @@ function populatePollForm(data){
 }
 
 // createOptionInputDiv
-
+// creates new input field to form
 function createOptionInputDiv(count, name, id){
 
     // Create new div
@@ -144,5 +146,42 @@ function addNewOption(event){
 
     document.querySelector('fieldset').appendChild(div);
     console.log(div);
+
+}
+
+function modifyPoll(event){
+    event.preventDefault();
+    console.log('Save changes');
+
+    // collect polldata from form
+    let pollData = {};
+    pollData.id = document.forms['editPoll']['id'].value;
+    pollData.topic = document.forms['editPoll']['topic'].value;
+    pollData.start = document.forms['editPoll']['start'].value;
+    pollData.end = document.forms['editPoll']['end'].value;
+
+    // collect options
+    const options = [];
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach(function(input){
+        if(input.name.indexOf('option') == 0){
+            options.push({ id: input.dataset.optionid, name: input.value })
+        }
+    })
+
+    pollData.options = options;
+
+    console.log(pollData);
+
+    // send data to backend
+    let ajax = new XMLHttpRequest();
+    ajax.onload = function(){
+        let data = JSON.parse(this.responseText);
+        console.log(data);
+    }
+    ajax.open("POST", "backend/modifyPoll.php", true);
+    ajax.setRequestHeader("Content-Type", "application/json");
+    ajax.send(JSON.stringify(pollData));
 
 }
