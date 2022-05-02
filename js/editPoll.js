@@ -8,6 +8,11 @@ if (pollParams.has('id')){
     getPollData(pollParams.get('id'));
 }
 
+let optionCount = 0;
+
+document.getElementById('addOption').addEventListener('click', addNewOption);
+document.getElementById('deleteLastOption').addEventListener('click', deleteLastOption);
+
 
 // Get poll data from db
 function getPollData(id){
@@ -29,11 +34,115 @@ function populatePollForm(data){
     document.forms['editPoll']['start'].value = data.start.replace(" ","T");
     document.forms['editPoll']['end'].value = data.end.replace(" ","T");
 
-    data.options.forEach(function(options){
-        console.log();
-        <div class="form-group">
-        <label for="option1">Option 1</label>
-        <input name="option1" type="text" class="form-control" placeholder="Option 1"> </input> 
-        </div>
+    const target = document.querySelector('fieldset');
+
+    data.options.forEach(function(option){
+        console.log(option);
+        optionCount++;
+        target.appendChild(createOptionInputDiv(optionCount, option.name, option.id));
+        
     })
+}
+
+// createOptionInputDiv
+
+function createOptionInputDiv(count, name, id){
+
+    // Create new div
+    const div = document.createElement('div');
+    div.classList.add('form-group');
+
+    // Create new label
+    const label = document.createElement('label');
+    const forAttribute = document.createAttribute('for');
+    const labelText = document.createTextNode( `Option ${count}`);
+    forAttribute.value = `option${count}`;
+    label.setAttributeNode(forAttribute);
+    label.appendChild(labelText);
+
+    // Create new input
+    const input = document.createElement('input');
+
+    input.classList.add('form-control');
+
+    const inputType = document.createAttribute('type');
+    inputType.value = "text";
+    input.setAttributeNode(inputType);
+
+    const inputName = document.createAttribute('name');
+    inputName.value = `option${count}`;
+    input.setAttributeNode(inputName);
+
+    const inputPlaceHolder = document.createAttribute('placeHolder');
+    inputPlaceHolder.value = `Option ${count}`;
+    input.setAttributeNode(inputPlaceHolder);
+
+    input.dataset.optionid = id;
+
+    input.value = name;
+
+    div.appendChild(label);
+    div.appendChild(input);
+
+    return div;
+
+}
+
+function deleteLastOption(event){
+
+    event.preventDefault();
+
+    if (optionCount <= 2){
+        return;
+    }
+
+    const optionToDelete = document.querySelector('fieldset').lastElementChild;
+    const parentElement = document.querySelector('fieldset');
+    parentElement.removeChild(optionToDelete);
+
+    optionCount--;
+
+}
+
+function addNewOption(event){
+
+    event.preventDefault();
+
+    optionCount++;
+
+    // Create new div
+    const div = document.createElement('div');
+    div.classList.add('form-group');
+
+    // Create new label
+    const label = document.createElement('label');
+    const forAttribute = document.createAttribute('for');
+    const labelText = document.createTextNode( `Option ${optionCount}`);
+    forAttribute.value = `option${optionCount}`;
+    label.setAttributeNode(forAttribute);
+    label.appendChild(labelText);
+
+    // Create new input
+    const input = document.createElement('input');
+
+    input.classList.add('form-control');
+
+    const inputType = document.createAttribute('type');
+    inputType.value = "text";
+    input.setAttributeNode(inputType);
+
+    const inputName = document.createAttribute('name');
+    inputName.value = `option${optionCount}`;
+    input.setAttributeNode(inputName);
+
+    const inputPlaceHolder = document.createAttribute('placeHolder');
+    inputPlaceHolder.value = `Option ${optionCount}`;
+    input.setAttributeNode(inputPlaceHolder);
+
+    div.appendChild(label);
+    div.appendChild(input);
+
+    document.querySelector('fieldset').appendChild(div);
+    console.log(div);
+
 }

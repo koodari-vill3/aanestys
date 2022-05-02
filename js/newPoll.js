@@ -111,7 +111,4 @@ function addNewOption(event){
     document.querySelector('fieldset').appendChild(div);
     console.log(div);
 
-
-
-
 }
