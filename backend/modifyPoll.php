@@ -38,9 +38,9 @@ try {
 }
 
 
+// update options table
 try {
 
-    // update options table
     foreach ($pollData->options as $option){
         if(isset($option->id)){
             $stmt = $conn->prepare("UPDATE option SET name = :name WHERE id = :id;");
@@ -57,6 +57,24 @@ try {
             $data['error'] = 'Error modifying option';
         } else {
             $data['success'] = 'Option edit succesfull';
+        }
+    }
+
+} catch (PDOException $e){
+    $data['error'] = $e->getMessage();
+}
+
+// delete options
+try {
+    foreach ($pollData->todelete as $option){
+        
+            $stmt = $conn->prepare("DELETE FROM option WHERE id = :id;");
+            $stmt->bindParam(":id", $option->id);
+        
+        if($stmt->execute() == false){
+            $data['error'] = 'Error deleting option';
+        } else {
+            $data['success'] = 'Option delete succesfull';
         }
     }
 
