@@ -50,9 +50,13 @@ try {
         $cookie_name = "poll_$pollid";
         if (isset($_COOKIE[$cookie_name])){
             $data['warning'] = 'You already voted this poll';
-        } else if ($end_timestamp < $current_timestamp) {
+        }
+        // jos äänestys ion vanhentunut
+         else if ($end_timestamp < $current_timestamp) {
             $data['warning'] = 'Poll is out of date and no longer available for voting!';
-        } else if ($start_timestamp > $current_timestamp) {
+        }
+        // tai se ei ole vielä saatavilla
+         else if ($start_timestamp > $current_timestamp) {
             $data['warning'] = 'Poll is not yet available for voting!';
         }
     }
