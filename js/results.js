@@ -46,8 +46,6 @@ function getPollData(id){
 
 function showResults(data){
 
-
-
     document.querySelector('h1').innerHTML = data.topic;
 
     const ul = document.getElementById('optionsUl');
